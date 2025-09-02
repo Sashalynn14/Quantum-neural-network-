@@ -1,0 +1,111 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quantum Neural Network - Real-time Simulation</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div id="info">
+    <div class="tabs">
+      <div class="tab active" data-tab="metrics">Metrics</div>
+      <div class="tab" data-tab="params">Parameters</div>
+      <div class="tab" data-tab="network">Neural Net</div>
+    </div>
+    
+    <div class="tab-content active" data-tab="metrics">
+      <div>Coherence: <span id="coherence-val">0</span></div>
+      <div class="graph"><div id="coherence-bar" class="graph-bar"></div></div>
+      
+      <div>Entropy: <span id="entropy-val">0</span></div>
+      <div class="graph"><div id="entropy-bar" class="graph-bar"></div></div>
+      
+      <div>Phase Harmony: <span id="phase-val">0</span></div>
+      <div class="graph"><div id="phase-bar" class="graph-bar"></div></div>
+      
+      <div class="scroll-chart" id="coherence-chart"></div>
+      <div class="scroll-chart" id="entropy-chart"></div>
+      
+      <div>Memory Snapshots: <span id="mem-count">0</span></div>
+      <div>Memory Groups: <span id="group-count">0</span></div>
+      <div>Code Evolutions: <span id="evolution-count">0</span></div>
+      <div id="performance-stats">
+        <div>Learning Rate: <span id="learning-rate-val">0</span></div>
+        <div>Calculation Time: <span id="calc-time">0</span>ms</div>
+        <div>FPS: <span id="fps-counter">0</span></div>
+      </div>
+    </div>
+    
+    <div class="tab-content" data-tab="params">
+      <div>Bias: <span id="bias-val">0.5</span></div>
+      <input type="range" id="bias-slider" class="param-slider" min="0" max="100" value="50">
+      
+      <div>Decay: <span id="decay-val">0.01</span></div>
+      <input type="range" id="decay-slider" class="param-slider" min="0" max="100" value="10">
+      
+      <div>Learning Rate: <span id="lr-val">0.005</span></div>
+      <input type="range" id="lr-slider" class="param-slider" min="0" max="100" value="10">
+      
+      <div>Feedback Strength: <span id="feedback-val">0.5</span></div>
+      <input type="range" id="feedback-slider" class="param-slider" min="0" max="100" value="50">
+      
+      <button id="toggle-code-editor">Toggle Code Editor</button>
+    </div>
+    
+    <div class="tab-content" data-tab="network">
+      <h3>Quantum Neural Network</h3>
+      <div>Network Error: <span id="network-error">0.0000</span></div>
+      <div class="graph"><div id="error-bar" class="graph-bar"></div></div>
+      
+      <div class="network-stats">
+        <div>Input Layer: <span id="input-count">12</span> qubits</div>
+        <div>Hidden Layer: <span id="hidden-count">36</span> qubits</div>
+        <div>Output Layer: <span id="output-count">12</span> qubits</div>
+        <div>Total Connections: <span id="connection-count">0</span></div>
+      </div>
+      
+      <div class="scroll-chart" id="learning-chart"></div>
+    </div>
+  </div>
+
+  <div id="memory-panel">
+    <div id="memory-stream"></div>
+  </div>
+
+  <div id="code-editor">
+    <h3>Quantum Brain Self-Modification</h3>
+    <div>Code Health: <span id="code-health">0%</span></div>
+    <div class="graph"><div id="code-health-bar" class="graph-bar"></div></div>
+    <textarea id="code-text" spellcheck="false"></textarea>
+    <button id="apply-code">Apply Modification</button>
+    <button id="generate-code">Generate Improvement</button>
+    <div id="code-status"></div>
+  </div>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+
+  <!-- Core Modules -->
+  <script type="module" src="js/core/DigitalQubit.js"></script>
+  <script type="module" src="js/core/CognitiveEngine.js"></script>
+
+  <!-- Visualization Modules -->
+  <script type="module" src="js/visualization/Scene.js"></script>
+  <script type="module" src="js/visualization/Particles.js"></script>
+  <script type="module" src="js/visualization/Effects.js"></script>
+
+  <!-- UI Modules -->
+  <script type="module" src="js/ui/Controls.js"></script>
+  <script type="module" src="js/ui/Charts.js"></script>
+  <script type="module" src="js/ui/CodeEditor.js"></script>
+
+  <!-- Main Application -->
+  <script type="module" src="js/main.js"></script>
+
+</body>
+</html>
