@@ -1,0 +1,18 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "DigitalQubit Cognitive Engine",
+  "name_for_model": "digitalqubit_cognitive_engine",
+  "description_for_human": "Connect ChatGPT to the DigitalQubit cognitive engine for processing, evolution, memory recall, measurement, inspection, and reward feedback.",
+  "description_for_model": "Use this plugin to interact with the user's DigitalQubit cognitive engine. Prefer processWithQubits for sending normalized 12-value input vectors through the network. Use inspectQubitEngine to examine current state, evolveQubitEngine to run evolution cycles, recallQubitMemory to restore stored qubit-state influence, measureQubits to collapse/read a selected layer, and rewardQubitEngine to provide bounded reinforcement feedback. Do not claim the DigitalQubit is a physical quantum computer; it is the user's software-defined qubit/cognitive engine.",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "http://127.0.0.1:8787/openapi.yaml",
+    "is_user_authenticated": false
+  },
+  "logo_url": "http://127.0.0.1:8787/logo.png",
+  "contact_email": "",
+  "legal_info_url": ""
+}
