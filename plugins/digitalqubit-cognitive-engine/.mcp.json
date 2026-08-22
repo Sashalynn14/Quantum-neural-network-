@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "digitalqubit": {
+      "command": "node",
+      "args": [
+        "${PLUGIN_ROOT}/mcp/server.mjs"
+      ],
+      "env": {
+        "DIGITALQUBIT_PLUGIN_ROOT": "${PLUGIN_ROOT}"
+      }
+    }
+  }
+}
