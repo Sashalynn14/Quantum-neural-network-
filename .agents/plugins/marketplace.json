@@ -1,0 +1,20 @@
+{
+  "name": "sashalynn-plugins",
+  "interface": {
+    "displayName": "Sasha Lynn Plugins"
+  },
+  "plugins": [
+    {
+      "name": "digitalqubit-cognitive-engine",
+      "source": {
+        "source": "local",
+        "path": "./plugins/digitalqubit-cognitive-engine"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "NONE"
+      },
+      "category": "Developer Tools"
+    }
+  ]
+}
