@@ -1,0 +1,159 @@
+openapi: 3.1.0
+info:
+  title: DigitalQubit Cognitive Engine
+  version: 1.0.0
+  description: Tool interface for the user's DigitalQubit cognitive engine.
+servers:
+  - url: http://127.0.0.1:8787
+paths:
+  /health:
+    get:
+      operationId: health
+      summary: Check the DigitalQubit bridge status
+      responses:
+        '200':
+          description: Service status
+  /inspect:
+    get:
+      operationId: inspectQubitEngine
+      summary: Inspect the current cognitive engine state
+      parameters:
+        - in: query
+          name: includeQubits
+          schema:
+            type: boolean
+          required: false
+      responses:
+        '200':
+          description: Current engine state
+  /process:
+    post:
+      operationId: processWithQubits
+      summary: Send a 12-value input vector through the DigitalQubit network
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [inputs]
+              properties:
+                inputs:
+                  type: array
+                  minItems: 12
+                  maxItems: 12
+                  items:
+                    type: number
+                    minimum: 0
+                    maximum: 1
+                evolveCycles:
+                  type: integer
+                  minimum: 0
+                  maximum: 100
+                  default: 0
+                target:
+                  type: array
+                  minItems: 12
+                  maxItems: 12
+                  items:
+                    type: number
+                    minimum: 0
+                    maximum: 1
+      responses:
+        '200':
+          description: Network output and metrics
+  /evolve:
+    post:
+      operationId: evolveQubitEngine
+      summary: Run one or more DigitalQubit evolution cycles
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cycles:
+                  type: integer
+                  minimum: 1
+                  maximum: 100
+                  default: 1
+      responses:
+        '200':
+          description: Updated metrics and engine state
+  /recall:
+    post:
+      operationId: recallQubitMemory
+      summary: Mix stored DigitalQubit snapshots back into the current state
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                mode:
+                  type: string
+                  enum: [global, layer, individual]
+                  default: global
+                depth:
+                  type: integer
+                  minimum: 0
+                  default: 0
+                strength:
+                  type: number
+                  minimum: 0
+                  maximum: 1
+                layer:
+                  type: integer
+                  minimum: 0
+                  maximum: 2
+                  default: 1
+      responses:
+        '200':
+          description: Recall result
+  /measure:
+    post:
+      operationId: measureQubits
+      summary: Measure the selected DigitalQubit layer
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                layer:
+                  type: string
+                  enum: [input, hidden, output]
+                  default: output
+      responses:
+        '200':
+          description: Qubit measurements
+  /reward:
+    post:
+      operationId: rewardQubitEngine
+      summary: Feed reward or correction back into the DigitalQubit network
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                amount:
+                  type: number
+                  minimum: -1
+                  maximum: 1
+                  default: 1
+                target:
+                  type: array
+                  minItems: 12
+                  maxItems: 12
+                  items:
+                    type: number
+                    minimum: 0
+                    maximum: 1
+      responses:
+        '200':
+          description: Reward-learning result
