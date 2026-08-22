@@ -1,0 +1,9 @@
+{
+  "name": "quantum-neural-network-qubit-plugin",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start:qubit-plugin": "node qubit-plugin-server.js"
+  }
+}
