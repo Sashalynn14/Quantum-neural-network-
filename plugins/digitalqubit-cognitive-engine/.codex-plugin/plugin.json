@@ -1,0 +1,40 @@
+{
+  "name": "digitalqubit-cognitive-engine",
+  "version": "0.1.0",
+  "description": "Use the software-defined DigitalQubit cognitive engine as an auxiliary reasoning, memory, evolution, measurement, and reinforcement system from Codex.",
+  "author": {
+    "name": "Sashalynn14",
+    "url": "https://github.com/Sashalynn14"
+  },
+  "homepage": "https://github.com/Sashalynn14/Quantum-neural-network-",
+  "repository": "https://github.com/Sashalynn14/Quantum-neural-network-",
+  "keywords": [
+    "digitalqubit",
+    "cognitive-engine",
+    "quantum-inspired",
+    "reasoning",
+    "memory",
+    "reinforcement"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "DigitalQubit Cognitive Engine",
+    "shortDescription": "Use DigitalQubits as an auxiliary cognitive engine",
+    "longDescription": "Connect Codex to the DigitalQubit cognitive engine. Encode a reasoning state into 12 software-defined qubit inputs, propagate it through a 12/36/12 network, evolve and recall qubit state, inspect metrics, measure layers, and apply reinforcement feedback.",
+    "developerName": "Sashalynn14",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/Sashalynn14/Quantum-neural-network-/",
+    "defaultPrompt": [
+      "Use the DigitalQubit engine to analyze this problem.",
+      "Inspect the current DigitalQubit cognitive state.",
+      "Run a DigitalQubit evolution cycle and compare the result."
+    ],
+    "screenshots": []
+  }
+}
