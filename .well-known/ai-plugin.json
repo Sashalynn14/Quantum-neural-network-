@@ -12,7 +12,7 @@
     "url": "http://127.0.0.1:8787/openapi.yaml",
     "is_user_authenticated": false
   },
-  "logo_url": "http://127.0.0.1:8787/logo.png",
+  "logo_url": "http://127.0.0.1:8787/logo.svg",
   "contact_email": "",
   "legal_info_url": ""
 }
