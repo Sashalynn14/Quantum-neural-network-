@@ -1,4 +1,5 @@
 import http from 'node:http';
+import { readFile } from 'node:fs/promises';
 import { URL } from 'node:url';
 import { ChatGPTQubitBridge } from './ChatGPTQubitBridge.js';
 
@@ -7,16 +8,24 @@ const HOST = process.env.HOST || '127.0.0.1';
 
 const bridge = new ChatGPTQubitBridge();
 
-function sendJson(res, statusCode, payload) {
-  const body = JSON.stringify(payload, null, 2);
-  res.writeHead(statusCode, {
-    'Content-Type': 'application/json; charset=utf-8',
+function commonHeaders(contentType, body) {
+  return {
+    'Content-Type': contentType,
     'Content-Length': Buffer.byteLength(body),
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': 'Content-Type, Authorization',
     'Access-Control-Allow-Methods': 'GET, POST, OPTIONS'
-  });
+  };
+}
+
+function sendText(res, statusCode, body, contentType = 'text/plain; charset=utf-8') {
+  res.writeHead(statusCode, commonHeaders(contentType, body));
   res.end(body);
+}
+
+function sendJson(res, statusCode, payload) {
+  const body = JSON.stringify(payload, null, 2);
+  sendText(res, statusCode, body, 'application/json; charset=utf-8');
 }
 
 function readJson(req) {
@@ -44,6 +53,11 @@ function readJson(req) {
   });
 }
 
+async function serveStaticFile(res, filePath, contentType) {
+  const body = await readFile(new URL(filePath, import.meta.url), 'utf8');
+  sendText(res, 200, body, contentType);
+}
+
 async function route(req, res) {
   if (req.method === 'OPTIONS') {
     res.writeHead(204, {
@@ -57,6 +71,18 @@ async function route(req, res) {
 
   const url = new URL(req.url, `http://${req.headers.host || `${HOST}:${PORT}`}`);
   const path = url.pathname;
+
+  if (req.method === 'GET' && path === '/openapi.yaml') {
+    return serveStaticFile(res, './openapi.yaml', 'application/yaml; charset=utf-8');
+  }
+
+  if (req.method === 'GET' && path === '/.well-known/ai-plugin.json') {
+    return serveStaticFile(res, './.well-known/ai-plugin.json', 'application/json; charset=utf-8');
+  }
+
+  if (req.method === 'GET' && path === '/logo.svg') {
+    return serveStaticFile(res, './logo.svg', 'image/svg+xml; charset=utf-8');
+  }
 
   if (req.method === 'GET' && path === '/health') {
     return sendJson(res, 200, {
